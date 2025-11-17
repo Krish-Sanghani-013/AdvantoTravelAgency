@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book My Trip - Adventurous Getaways</title>
+    <link rel="stylesheet" href="assets/css/booking.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Advanto</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destination.html">Destinations</a></li>
+                <li><a href="booking.html" class="active">Book Trip</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <section class="page-header">
+        <div class="header-content">
+            <h1>Book Your Dream Trip</h1>
+            <p>Fill out your journey details and start your adventure</p>
+        </div>
+    </section>
+
+    
+    <main class="booking-container">
+        <div class="container">
+            
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Trip Details</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-title">Travelers</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Preferences</span>
+                </div>
+                <div class="step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-title">Payment</span>
+                </div>
+            </div>
+
+            
+            <form id="bookingForm" class="booking-form">
+
+                
+                <section class="form-step active" id="step-1">
+                    <h2>Trip Details</h2>
+                    <p class="section-subtitle">Tell us about your journey</p>
+
+                    <div class="form-group">
+                        <label for="tripType">Trip Type *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="tripType" value="roundtrip" required>
+                                <span>Round Trip</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="tripType" value="oneway" required>
+                                <span>One Way</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departureLocation">Your Location (Departure) *</label>
+                            <input type="text" id="departureLocation" name="departureLocation" placeholder="Enter your city/location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="destinationLocation">Destination Location *</label>
+                            <input type="text" id="destinationLocation" name="destinationLocation" placeholder="Where do you want to go?" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Departure Date *</label>
+                            <input type="date" id="startDate" name="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">Return Date *</label>
+                            <input type="date" id="endDate" name="endDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tripDays">Number of Days *</label>
+                            <input type="number" id="tripDays" name="tripDays" min="1" max="365" placeholder="How many days?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget (in INR) *</label>
+                            <input type="number" id="budget" name="budget" min="0" placeholder="Enter your budget" required>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section class="form-step" id="step-2">
+                    <h2>Traveler Information</h2>
+                    <p class="section-subtitle">Add details of all travelers</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="totalMembers">Total Members *</label>
+                            <select id="totalMembers" name="totalMembers" required onchange="updateTravelers()">
+                                <option value="">Select number of travelers</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6 or More</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupType">Travel Group Type *</label>
+                            <select id="groupType" name="groupType" required>
+                                <option value="">Select group type</option>
+                                <option value="family">Family</option>
+                                <option value="friends">Friends</option>
+                                <option value="couple">Couple</option>
+                                <option value="solo">Solo Traveler</option>
+                                <option value="corporate">Corporate/Group</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="travelers-section" id="travelersContainer">
+                        
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="children">Number of Children (Below 12) *</label>
+                            <select id="children" name="children" required>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="seniors">Number of Seniors (Above 60) *</label>
+                            <select id="seniors" name="seniors" required>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3+</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                
+                <section class="form-step" id="step-3">
+                    <h2>Travel Preferences</h2>
+                    <p class="section-subtitle">Customize your trip experience</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="accommodationType">Hotel/Accommodation Type *</label>
+                            <select id="accommodationType" name="accommodationType" required>
+                                <option value="">Select accommodation type</option>
+                                <option value="budget">Budget (3-star)</option>
+                                <option value="standard">Standard (4-star)</option>
+                                <option value="luxury">Luxury (5-star)</option>
+                                <option value="resort">Resort</option>
+                                <option value="homestay">Homestay</option>
+                                <option value="villa">Villa/Independent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="roomType">Room Type *</label>
+                            <select id="roomType" name="roomType" required>
+                                <option value="">Select room type</option>
+                                <option value="single">Single</option>
+                                <option value="double">Double/Twin</option>
+                                <option value="suite">Suite</option>
+                                <option value="shared">Shared Dormitory</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Travel Activities & Interests *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="sightseeing">
+                                <span>Sightseeing</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="adventure">
+                                <span>Adventure Sports</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="culture">
+                                <span>Cultural Tours</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="wildlife">
+                                <span>Wildlife Safari</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="beach">
+                                <span>Beach Activities</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="hiking">
+                                <span>Hiking/Trekking</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="food">
+                                <span>Food Tours</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="activities" value="shopping">
+                                <span>Shopping</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mealPlan">Meal Plan *</label>
+                            <select id="mealPlan" name="mealPlan" required>
+                                <option value="">Select meal plan</option>
+                                <option value="roomonly">Room Only</option>
+                                <option value="breakfast">Breakfast Included</option>
+                                <option value="halfboard">Half Board (Breakfast + Dinner)</option>
+                                <option value="fullboard">Full Board (All Meals)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="transport">Transport Mode *</label>
+                            <select id="transport" name="transport" required>
+                                <option value="">Select transport</option>
+                                <option value="flight">Flight</option>
+                                <option value="train">Train</option>
+                                <option value="bus">Bus</option>
+                                <option value="car">Car/Taxi</option>
+                                <option value="mixed">Mixed Mode</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialRequests">Special Requests/Notes</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="4" placeholder="Any special dietary needs, accessibility requirements, or other requests?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="guidedTour" value="yes">
+                            <span>I need a professional tour guide</span>
+                        </label>
+                    </div>
+                </section>
+
+                
+                <section class="form-step" id="step-4">
+                    <h2>Payment & Confirmation</h2>
+                    <p class="section-subtitle">Complete your booking</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="primaryName">Primary Contact Name *</label>
+                            <input type="text" id="primaryName" name="primaryName" placeholder="Full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="primaryEmail">Email Address *</label>
+                            <input type="email" id="primaryEmail" name="primaryEmail" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="primaryPhone">Phone Number *</label>
+                            <input type="tel" id="primaryPhone" name="primaryPhone" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="primaryAddress">Address *</label>
+                            <input type="text" id="primaryAddress" name="primaryAddress" placeholder="Your address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode">Pincode/Postal Code *</label>
+                            <input type="text" id="pincode" name="pincode" placeholder="Pincode" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Payment Method *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="creditcard" required>
+                                <span>Credit/Debit Card</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="netbanking">
+                                <span>Net Banking</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="upi">
+                                <span>UPI</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="wallet">
+                                <span>Digital Wallet</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="paymentMethod" value="bankxfer">
+                                <span>Bank Transfer</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    
+                    <div class="price-summary">
+                        <h3>Trip Cost Summary</h3>
+                        <div class="summary-row">
+                            <span>Base Package Cost:</span>
+                            <span id="basePrice">₹ 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Additional Activities:</span>
+                            <span id="activitiesPrice">₹ 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Hotel (Multi-night):</span>
+                            <span id="hotelPrice">₹ 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Transport Charges:</span>
+                            <span id="transportPrice">₹ 0</span>
+                        </div>
+                        <div class="summary-row important">
+                            <span>Total Estimated Cost:</span>
+                            <span id="totalPrice">₹ 0</span>
+                        </div>
+                        <p class="price-note">*Prices are estimates and subject to confirmation</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="terms" required>
+                            <span>I agree to the Terms & Conditions and Privacy Policy</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="newsletter">
+                            <span>Subscribe me to travel deals and updates</span>
+                        </label>
+                    </div>
+                </section>
+
+                
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display:none;">← Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">Next →</button>
+                    <button type="submit" class="btn btn-success" id="submitBtn" style="display:none;">Complete Booking</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Advanto</h4>
+                    <p>Making travel dreams a reality with curated experiences and personalized services.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destination.html">Destinations</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@advanto.com</p>
+                    <p>Phone: +91-XXXXXXXXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Advanto. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/booking.js"></script>
+</body>
+</html>

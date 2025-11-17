@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/contact.css" />
+  <title>Contact Us - Advanto Travel Tours</title>
+</head>
+
+<body>
+
+  
+  <nav>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle-input" />
+        <div class="nav__header">
+            <div class="nav__logo">
+                <a href="index.html">
+                    <img src="/assets/img/logo.png" alt="logo" />
+                </a>
+            </div>
+            <label for="menu-toggle" class="nav__menu__btn">
+                <i class="ri-menu-3-line icon-menu"></i>
+                <i class="ri-close-line icon-close"></i>
+            </label>
+        </div>
+        <ul class="nav__links">
+            
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+                <i class="ri-sun-line icon icon--light" aria-hidden="true"></i>
+                <i class="ri-moon-line icon icon--dark" aria-hidden="true"></i>
+            </button>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="destination.html">Tours</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+            <li>
+                <a href="booking.html" class="btn">
+                    Plan a Trip
+                    <span><i class="ri-arrow-right-long-line"></i></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    
+    <header class="header__container">
+        <video class="header__video" autoplay muted loop playsinline preload="auto">
+            <source src="https://www.pexels.com/download/video/2169880/">
+        </video>
+        <div class="header__overlay"></div>
+        <div class="header__content">
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you. Let's start your adventure today!</p>
+        </div>
+    </header>
+
+    
+    <main class="main__container">
+
+        <section class="contact-info-section">
+            <h2 class="section__header">Contact Information</h2>
+            <p class="section__description">Reach out to us through any of these channels</p>
+
+            <div class="contact-info__grid">
+                <div class="info-card">
+                    <div class="info-card__icon">
+                        <i class="ri-map-pin-line"></i>
+                    </div>
+                    <h3>Address</h3>
+                    <p>123 Rajkot-morbi road, Rajkot<br>Gujarat, India</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card__icon">
+                        <i class="ri-phone-line"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p><a href="tel:+919876543210">+91 9313776549</a><br><a href="tel:+919313776549">+91 9313776549</a></p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card__icon">
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:m96984408@gmail.com">m96984408@gmail.com</a><br><a href="mailto:supportbackup013@gmail.com">supportbackup013@gmail.com</a></p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card__icon">
+                        <i class="ri-time-line"></i>
+                    </div>
+                    <h3>Hours</h3>
+                    <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat - Sun: 10:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <h2 class="section__header">Send Us a Message</h2>
+            <p class="section__description">Fill out the form below and we'll get back to you as soon as possible</p>
+
+            <div class="form-wrapper">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination">Preferred Destination</label>
+                        <select id="destination" name="destination">
+                            <option value="">Select a destination</option>
+                            <option value="india">India</option>
+                            <option value="paris">Paris</option>
+                            <option value="bali">Bali</option>
+                            <option value="dubai">Dubai</option>
+                            <option value="switzerland">Switzerland</option>
+                            <option value="singapore">Singapore</option>
+                            <option value="tokyo">Tokyo</option>
+                            <option value="maldives">Maldives</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="What is this about?" />
+                    </div>
+
+                    <div class="form-group form-group--full">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us more about your inquiry..." rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group form-group--full">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required />
+                            <span>I agree to the privacy policy and terms of service *</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">
+                        Send Message
+                        <span><i class="ri-arrow-right-long-line"></i></span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section class="location-section">
+            <h2 class="section__header">Our Location</h2>
+            <p class="section__description">Visit us at our office or explore our main headquarters</p>
+
+            <div class="location-container">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.1234567890!2d77.2099!3d28.6139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd281e340001%3A0x4b50410e6213dfa8!2s123%20Travel%20Street%2C%20Adventure%20City!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        class="location-map">
+                    </iframe>
+                </div>
+                <div class="location-details">
+                    <div class="location-card">
+                        <h3>Main Office</h3>
+                        <p>
+                            <i class="ri-map-pin-line"></i>
+                            123 Rajkot-morbi road, Rajkot<br>
+                            Gujarat, India
+                        </p>
+                        <p>
+                            <i class="ri-phone-line"></i>
+                            <a href="tel:+919313776549">+91 9313776549</a>
+                        </p>
+                        <p>
+                            <i class="ri-mail-line"></i>
+                            <a href="m96984408@gmail.com">m96984408@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h2 class="section__header">Follow Us</h2>
+            <p class="section__description">Connect with us on social media</p>
+
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/17gr944KVn/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="X">
+                    <i class="ri-twitter-x-fill"></i>
+                </a>
+                <a href="https://www.instagram.com/krish_sanghani_08?igsh=ZjRlbHliOG9iZ2c3" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <i class="ri-instagram-line"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+                <!-- <a href="#" class="social-link" aria-label="YouTube">
+                    <i class="ri-youtube-fill"></i>
+                </a> -->
+                <a href="https://github.com/Krish-Sanghani-013" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                    <i class="ri-github-fill"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    
+    <footer class="footer__container">
+        <p>© 2025 Advanto Travel Tours. All Rights Reserved.</p>
+    </footer>
+
+    <script src="/assets/js/contact.js"></script>
+</body>
+
+</html>

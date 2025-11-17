@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css " />
+
+  <title>Web Design Mastery | Advanto</title>
+</head>
+
+<body>
+  <nav>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle-input" />
+    <div class="nav__header">
+      <div class="nav__logo">
+        <a href="#">
+          <img src="/assets/img/logo.png" alt="logo" />
+        </a>
+      </div>
+      <label for="menu-toggle" class="nav__menu__btn">
+        <i class="ri-menu-3-line icon-menu"></i>
+        <i class="ri-close-line icon-close"></i>
+      </label>
+    </div>
+    <ul class="nav__links" id="nav-links">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="ri-sun-line icon icon--light" aria-hidden="true"></i>
+        <i class="ri-moon-line icon icon--dark" aria-hidden="true"></i>
+      </button>
+      <li><a href="#home">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="destination.html">Tours</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contacts</a></li>
+      <li>
+        <a href="booking.html" class="btn">
+          Plan a Trip
+          <span><i class="ri-arrow-right-long-line"></i></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <header class="section__container header__container" id="home">
+    <div class="header__image">
+      <img src="/assets/img/header.png" alt="header" />
+    </div>
+    <div class="header__content">
+      <img src="assets/img/plane.png" alt="plane" />
+      <h1>Explore The World And Enjoy Your Trip</h1>
+      <p class="section__description">
+        Discover breathtaking destinations and create unforgettable memories
+        with Advanto. From scenic landscapes to vibrant cities, your next
+        adventure awaits. Let's make your dream trip a reality!
+      </p>
+      <form action="/">
+        <div class="input__group">
+          <label for="location">
+            <span><i class="ri-map-pin-line"></i></span> Location
+          </label>
+          <input id="location" type="search" name="location" list="location-list" placeholder="" />
+
+          <datalist id="location-list">
+            <option value="Sahara Desert, Algeria"></option>
+            <option value="Paris, France"></option>
+            <option value="Bali, Indonesia"></option>
+            <option value="Dubai, UAE"></option>
+            <option value="Goa, India"></option>
+            <option value="Kerala, India"></option>
+          </datalist>
+        </div>
+
+        <div class="input__group">
+          <label for="date">
+            <span><i class="ri-calendar-line"></i></span> Date
+          </label>
+          <input id="date" type="date" name="date" placeholder="Select date" />
+        </div>
+
+        <button class="btn" aria-label="Search">
+          <i class="ri-search-line"></i>
+        </button>
+      </form>
+    </div>
+  </header>
+
+  <section class="about" id="about">
+    <div class="section__container about__container">
+      <div class="about__image">
+        <img src="assets/img/about.jpg" alt="about" />
+      </div>
+      <div class="about__content">
+        <h2 class="section__header">
+          It's Time For a <span>New Adventure!</span> Don't Wait Any Longer.
+        </h2>
+        <p class="section__description">
+          At Advanto, we believe every journey is a story waiting to be told.
+          Whether you're seeking the tranquility of nature, the charm of
+          historic cities, or the excitement of new cultures, we're here to
+          turn your travel dreams into reality. So why wait? Pack your bags,
+          step out of your comfort zone, and let Advanto guide you to your
+          next great experience!
+        </p>
+        <a class="btn btn-small" href="#">About Us<span><i class="ri-arrow-right-long-line"></i></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section__container tour__container" id="tour">
+    <h3 class="section__subheader">Tour Type</h3>
+    <h2 class="section__header">Pick A Tour Type</h2>
+
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="tour__card">
+          <img src="assets/img/tour-1.jpg" alt="tour" />
+          <h4>Forest Adventures</h4>
+          <p>15 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-2.jpg" alt="tour" />
+          <h4>Mountain Climbing</h4>
+          <p>10 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-3.jpg" alt="tour" />
+          <h4>Beach Vacations</h4>
+          <p>18 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-4.jpg" alt="tour" />
+          <h4>City Tours</h4>
+          <p>12 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-5.jpg" alt="tour" />
+          <h4>Desert Safaris</h4>
+          <p>8 Tours+</p>
+        </div>
+
+        <div class="tour__card">
+          <img src="assets/img/tour-1.jpg" alt="tour" />
+          <h4>Forest Adventures</h4>
+          <p>15 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-2.jpg" alt="tour" />
+          <h4>Mountain Climbing</h4>
+          <p>10 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-3.jpg" alt="tour" />
+          <h4>Beach Vacations</h4>
+          <p>18 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-4.jpg" alt="tour" />
+          <h4>City Tours</h4>
+          <p>12 Tours+</p>
+        </div>
+        <div class="tour__card">
+          <img src="assets/img/tour-5.jpg" alt="tour" />
+          <h4>Desert Safaris</h4>
+          <p>8 Tours+</p>
+        </div>
+      </div>
+    </div>
+    <div class="tour__btn">
+      <a class="btn" href="destination.html">
+        Show All
+        <span><i class="ri-arrow-right-long-line"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="destination">
+    <div class="section__container destination__container">
+      <h3 class="section__subheader">Top Destination</h3>
+      <h2 class="section__header">Our Top Destinations</h2>
+      <div class="destination__grid">
+          <div class="destination__card">
+          <img src="assets/img/destination-1.jpg" alt="destination" />
+          <div class="destination__card__content">
+            <h4>Enjoy the tour of the City of Love</h4>
+            <h5>Paris, France</h5>
+            <div class="destination__card__footer">
+              <h6>₹1,90,900</h6>
+              <p>(14 days)</p>
+            </div>
+          </div>
+        </div>
+        <div class="destination__card">
+          <img src="assets/img/destination-2.jpg" alt="destination" />
+          <div class="destination__card__content">
+            <h4>Enjoy the tour of paradise with pristine beaches</h4>
+            <h5>Bali, Indonesia</h5>
+            <div class="destination__card__footer">
+              <h6>₹1,49,400</h6>
+              <p>(12 days)</p>
+            </div>
+          </div>
+        </div>
+        <div class="destination__card">
+          <img src="assets/img/destination-3.jpg" alt="destination" />
+          <div class="destination__card__content">
+            <h4>Enjoy the tour of luxury and innovation</h4>
+            <h5>Dubai, UAE</h5>
+            <div class="destination__card__footer">
+              <h6>₹2,07,500</h6>
+              <p>(18 days)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="destination__btn">
+        <button class="btn">
+          Show All
+          <span><i class="ri-arrow-right-long-line"></i></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="blog">
+    <div class="section__container blog__container">
+      <h3 class="section__subheader">Latest News & Blogs</h3>
+      <h2 class="section__header">Our Latest News & Blogs</h2>
+      <div class="blog__grid">
+        <div class="blog__card">
+          <img src="assets/img/blog-1.jpg" alt="blog" />
+          <div class="blog__content">
+            <h4>Top 10 Must-Visit Destinations for Your Next Adventure</h4>
+            <button class="btn">
+              Read More
+              <span><i class="ri-arrow-right-long-line"></i></span>
+            </button>
+          </div>
+        </div>
+        <div class="blog__card">
+          <img src="assets/img/blog-2.jpg" alt="blog" />
+          <div class="blog__content">
+            <h4>Travel Smart: Essential Tips for Stress-Free Vacations</h4>
+            <button class="btn">
+              Read More
+              <span><i class="ri-arrow-right-long-line"></i></span>
+            </button>
+          </div>
+        </div>
+        <div class="blog__card">
+          <img src="assets/img/blog-3.jpg" alt="blog" />
+          <div class="blog__content">
+            <h4>
+              Hidden Gems: Discover Offbeat Locations for Unique Experience
+            </h4>
+            <button class="btn">
+              Read More
+              <span><i class="ri-arrow-right-long-line"></i></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="blog__btn">
+        <a href="blog.html" class="btn">
+          Show All
+          <span><i class="ri-arrow-right-long-line"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="banner">
+    <div class="banner__wrapper">
+      <img src="assets/img/banner-1.jpg" alt="banner" />
+      <img src="assets/img/banner-2.jpg" alt="banner" />
+      <img src="assets/img/banner-3.jpg" alt="banner" />
+      <img src="assets/img/banner-4.jpg" alt="banner" />
+      <img src="assets/img/banner-5.jpg" alt="banner" />
+      <img src="assets/img/banner-6.jpg" alt="banner" />
+      <img src="assets/img/banner-7.jpg" alt="banner" />
+      <img src="assets/img/banner-8.jpg" alt="banner" />
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="section__container footer__container">
+      <div class="footer__logo">
+        <img src="assets/img/logo.png" alt="logo" />
+      </div>
+
+      <ul class="footer__links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="destination.html">Tours</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="#contact">Contacts</a></li>
+      </ul>
+      <ul class="footer__socials">
+        <li>
+          <a href="https://www.facebook.com/share/17gr944KVn/" target="_blank" rel="noopener noreferrer"><i class="ri-facebook-fill"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="ri-twitter-x-fill"></i></a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/krish_sanghani_08?igsh=ZjRlbHliOG9iZ2c3" target="_blank" rel="noopener noreferrer"><i class="ri-instagram-line"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="ri-linkedin-fill"></i></a>
+        </li>
+        <li>
+          <a href="https://github.com/Krish-Sanghani-013" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer__bar">
+      Copyright © 2025 Web Design Mastery. All rights reserved.
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
