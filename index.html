@@ -5,14 +5,51 @@
   <meta charset="UTF-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/styles.css " />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <title>Web Design Mastery | Advanto</title>
 </head>
 
-<body>
+<body class="preloader-active">
+  <div class="preloader" id="preloader">
+    <svg style="display: none;">
+      <defs>
+        <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#01bbbf;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#06b6d4;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#01bbbf;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="preloader__container">
+      <div class="preloader__logo">
+        <svg viewBox="0 0 100 100" class="spinner">
+          <circle cx="50" cy="50" r="45" class="spinner__circle" />
+        </svg>
+      </div>
+      <div class="preloader__content">
+        <h1 class="preloader__title">
+          <span class="preloader__letter" style="--i: 0;">A</span>
+          <span class="preloader__letter" style="--i: 1;">d</span>
+          <span class="preloader__letter" style="--i: 2;">v</span>
+          <span class="preloader__letter" style="--i: 3;">a</span>
+          <span class="preloader__letter" style="--i: 4;">n</span>
+          <span class="preloader__letter" style="--i: 5;">t</span>
+          <span class="preloader__letter" style="--i: 6;">o</span>
+        </h1>
+        <p class="preloader__subtitle">Preparing Your Journey...</p>
+      </div>
+      <div class="preloader__progress">
+        <div class="preloader__bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader__percentage" id="preloaderPercentage">0%</div>
+    </div>
+  </div>
+
   <nav>
     <input type="checkbox" id="menu-toggle" class="menu-toggle-input" />
     <div class="nav__header">
@@ -50,7 +87,7 @@
       <img src="/assets/img/header.png" alt="header" />
     </div>
     <div class="header__content">
-      <img src="assets/img/plane.png" alt="plane" />
+      <img src="assets/img/plane.png" alt="plane" class="float-element" />
       <h1>Explore The World And Enjoy Your Trip</h1>
       <p class="section__description">
         Discover breathtaking destinations and create unforgettable memories
@@ -90,7 +127,7 @@
 
   <section class="about" id="about">
     <div class="section__container about__container">
-      <div class="about__image">
+      <div class="about__image" data-speed="3">
         <img src="assets/img/about.jpg" alt="about" />
       </div>
       <div class="about__content">
@@ -115,7 +152,7 @@
     <h2 class="section__header">Pick A Tour Type</h2>
 
     <div class="swiper">
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper card-group">
         <div class="tour__card">
           <img src="assets/img/tour-1.jpg" alt="tour" />
           <h4>Forest Adventures</h4>
@@ -181,14 +218,14 @@
     <div class="section__container destination__container">
       <h3 class="section__subheader">Top Destination</h3>
       <h2 class="section__header">Our Top Destinations</h2>
-      <div class="destination__grid">
-          <div class="destination__card">
+      <div class="destination__grid card-group">
+        <div class="destination__card">
           <img src="assets/img/destination-1.jpg" alt="destination" />
           <div class="destination__card__content">
             <h4>Enjoy the tour of the City of Love</h4>
             <h5>Paris, France</h5>
             <div class="destination__card__footer">
-              <h6>₹1,90,900</h6>
+              <h6>₹<span class="count-up">190900</span></h6>
               <p>(14 days)</p>
             </div>
           </div>
@@ -199,7 +236,7 @@
             <h4>Enjoy the tour of paradise with pristine beaches</h4>
             <h5>Bali, Indonesia</h5>
             <div class="destination__card__footer">
-              <h6>₹1,49,400</h6>
+              <h6>₹<span class="count-up">149400</span></h6>
               <p>(12 days)</p>
             </div>
           </div>
@@ -210,7 +247,7 @@
             <h4>Enjoy the tour of luxury and innovation</h4>
             <h5>Dubai, UAE</h5>
             <div class="destination__card__footer">
-              <h6>₹2,07,500</h6>
+              <h6>₹<span class="count-up">207500</span></h6>
               <p>(18 days)</p>
             </div>
           </div>
@@ -225,12 +262,12 @@
     </div>
   </section>
 
-  
+
   <section class="blog">
     <div class="section__container blog__container">
       <h3 class="section__subheader">Latest News & Blogs</h3>
       <h2 class="section__header">Our Latest News & Blogs</h2>
-      <div class="blog__grid">
+      <div class="blog__grid card-group">
         <div class="blog__card">
           <img src="assets/img/blog-1.jpg" alt="blog" />
           <div class="blog__content">
@@ -301,19 +338,22 @@
       </ul>
       <ul class="footer__socials">
         <li>
-          <a href="https://www.facebook.com/share/17gr944KVn/" target="_blank" rel="noopener noreferrer"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.facebook.com/share/17gr944KVn/" target="_blank" rel="noopener noreferrer"><i
+              class="ri-facebook-fill"></i></a>
         </li>
         <li>
           <a href="#"><i class="ri-twitter-x-fill"></i></a>
         </li>
         <li>
-          <a href="https://www.instagram.com/krish_sanghani_08?igsh=ZjRlbHliOG9iZ2c3" target="_blank" rel="noopener noreferrer"><i class="ri-instagram-line"></i></a>
+          <a href="https://www.instagram.com/krish_sanghani_08?igsh=ZjRlbHliOG9iZ2c3" target="_blank"
+            rel="noopener noreferrer"><i class="ri-instagram-line"></i></a>
         </li>
         <li>
           <a href="#"><i class="ri-linkedin-fill"></i></a>
         </li>
         <li>
-          <a href="https://github.com/Krish-Sanghani-013" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i></a>
+          <a href="https://github.com/Krish-Sanghani-013" target="_blank" rel="noopener noreferrer"><i
+              class="ri-github-fill"></i></a>
         </li>
       </ul>
     </div>
