@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book My Trip - Adventurous Getaways</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/booking.css">
 </head>
 <body>
@@ -14,6 +15,10 @@
                 <a href="index.html">Advanto</a>
             </div>
             <ul class="nav-links">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+                    <i class="ri-sun-line icon icon--light" aria-hidden="true"></i>
+                    <i class="ri-moon-line icon icon--dark" aria-hidden="true"></i>
+                </button>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="destination.html">Destinations</a></li>
                 <li><a href="booking.html" class="active">Book Trip</a></li>
@@ -416,6 +421,7 @@
         </div>
     </footer>
 
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/booking.js"></script>
 </body>
 </html>

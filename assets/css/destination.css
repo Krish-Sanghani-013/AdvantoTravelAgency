@@ -23,6 +23,73 @@
   --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* Dark mode comprehensive styles */
+[data-theme="dark"] body {
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] nav,
+[data-theme="dark"] .nav__header {
+  background-color: #1f2937 !important;
+}
+
+[data-theme="dark"] .nav__links {
+  background-color: #1f2937 !important;
+}
+
+[data-theme="dark"] .nav__links a,
+[data-theme="dark"] .nav__menu__btn {
+  color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .section__header,
+[data-theme="dark"] h1, [data-theme="dark"] h2, 
+[data-theme="dark"] h3, [data-theme="dark"] h4 {
+  color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .main__container,
+[data-theme="dark"] .filter__container {
+  background-color: var(--bg-color);
+}
+
+[data-theme="dark"] .destination-card {
+  background-color: var(--card-bg) !important;
+  border-color: #374151 !important;
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .destination-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+[data-theme="dark"] .card__content h3,
+[data-theme="dark"] .card__content p {
+  color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .footer {
+  background-color: var(--card-bg) !important;
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .footer__links a,
+[data-theme="dark"] .footer__bar {
+  color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .footer__socials a {
+  background: rgba(173,216,230,0.08);
+  border-color: rgba(173,216,230,0.25);
+  color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .footer__socials a:hover {
+  background: var(--primary-color);
+  color: #111827 !important;
+}
+
 * {
   margin: 0;
   padding: 0;
