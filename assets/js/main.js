@@ -550,5 +550,81 @@ if (themeToggle) {
     });
   });
 
+  function initWarpText() {
+    const elements = document.querySelectorAll(".warp-text");
+    if (!elements || elements.length === 0) return;
+
+    elements.forEach((el) => {
+      let newHTML = "";
+      el.childNodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent;
+          for (let i = 0; i < text.length; i++) {
+            const ch = text[i];
+            if (ch === " ")
+              newHTML += `<span class="warp-letter">&nbsp;</span>`;
+            else newHTML += `<span class="warp-letter">${ch}</span>`;
+          }
+        } else {
+          newHTML += node.outerHTML;
+        }
+      });
+      el.innerHTML = newHTML;
+    });
+
+    const letters = Array.from(document.querySelectorAll(".warp-letter"));
+    if (letters.length === 0) return;
+
+    let rafId = null;
+    const range = 120;
+
+    function handleMove(e) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        letters.forEach((letter) => {
+          const rect = letter.getBoundingClientRect();
+          const letterX = rect.left + rect.width / 2;
+          const letterY = rect.top + rect.height / 2;
+
+          const dx = clientX - letterX;
+          const dy = clientY - letterY;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < range) {
+            const force = 1 - dist / range;
+            const moveX = -(dx * force * 0.42);
+            const moveY = -(dy * force * 0.42);
+            const rotate = (dx / rect.width) * force * 12;
+            letter.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotate}deg)`;
+          } else {
+            letter.style.transform = `translate(0,0) rotate(0)`;
+          }
+        });
+      });
+    }
+
+    function resetLetters() {
+      if (rafId) cancelAnimationFrame(rafId);
+      letters.forEach((l) => (l.style.transform = ""));
+    }
+
+    window.addEventListener("mousemove", handleMove, { passive: true });
+    window.addEventListener("touchmove", handleMove, { passive: true });
+    window.addEventListener("mouseleave", resetLetters);
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {}, 120);
+    });
+  }
+
+  try {
+    initWarpText();
+  } catch (e) {}
+
   console.info("🎬 Full Page Animation Suite Activated!");
 })();

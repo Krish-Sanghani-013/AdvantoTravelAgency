@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
@@ -12,9 +11,117 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <title>Web Design Mastery | Advanto</title>
+
+  <style>
+    :root {
+      --cursor-plane-color: #000000;
+      --cursor-ring-color: rgba(2, 132, 199, 0.6);
+      --cursor-trail-core: #000000;
+      --cursor-trail-glow: #38bdf8;
+      --cursor-trail-shadow: #0284c7;
+    }
+
+    body.light-mode,
+    body.light-theme,
+    body.light,
+    body.is-light,
+    html[data-theme="light"] body {
+      --cursor-plane-color: #111827;
+      --cursor-ring-color: rgba(2, 132, 199, 0.6);
+      --cursor-trail-core: #111827;
+      --cursor-trail-glow: #38bdf8;
+      --cursor-trail-shadow: #0284c7;
+    }
+
+    body,
+    *,
+    a,
+    button,
+    input {
+      cursor: none !important;
+    }
+
+    .cursor-system {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99999;
+      overflow: hidden;
+    }
+
+    #effects-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .cursor-plane {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      color: var(--cursor-plane-color);
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+      transition: color 0.3s ease;
+    }
+
+    .cursor-plane svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+    }
+
+    .cursor-ring {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 1px dashed var(--cursor-ring-color);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      will-change: transform;
+      transition: border-color 0.3s ease;
+    }
+
+    .cursor-aura {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0) 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+  </style>
 </head>
 
 <body class="preloader-active">
+
+  <div class="cursor-system">
+    <canvas id="effects-canvas"></canvas>
+
+    <div class="cursor-plane" id="c-plane">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="transform: rotate(90deg);">
+        <path
+          d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+      </svg>
+    </div>
+
+    <div class="cursor-ring" id="c-ring"></div>
+
+    <div class="cursor-aura" id="c-aura"></div>
+  </div>
+
   <div class="preloader" id="preloader">
     <svg style="display: none;">
       <defs>
@@ -362,6 +469,205 @@
     </div>
   </footer>
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const plane = document.getElementById('c-plane');
+      const ring = document.getElementById('c-ring');
+      const aura = document.getElementById('c-aura');
+      const canvas = document.getElementById('effects-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      let mouse = {
+        x: width / 2,
+        y: height / 2
+      };
+      let cursor = {
+        x: width / 2,
+        y: height / 2
+      };
+
+      let ringPos = {
+        x: width / 2,
+        y: height / 2
+      };
+      let auraPos = {
+        x: width / 2,
+        y: height / 2
+      };
+
+      let currentScale = 1;
+      let currentAngle = 0;
+      let lastAngle = 0;
+      let clickScale = 1;
+
+      const trailHistory = [];
+      const MAX_TRAIL_LENGTH = 20;
+
+      const clickEffects = [];
+
+      let trailCoreColor = '#ffffff';
+      let trailGlowColor = '#a5f3fc';
+      let trailShadowColor = '#0ea5e9';
+
+      const updateCanvasColors = () => {
+        const style = getComputedStyle(document.body);
+
+        const newCore = style.getPropertyValue('--cursor-trail-core').trim();
+        const newGlow = style.getPropertyValue('--cursor-trail-glow').trim();
+        const newShadow = style.getPropertyValue('--cursor-trail-shadow').trim();
+
+        if (newCore) trailCoreColor = newCore;
+        if (newGlow) trailGlowColor = newGlow;
+        if (newShadow) trailShadowColor = newShadow;
+      };
+
+      const observer = new MutationObserver(updateCanvasColors);
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+
+      updateCanvasColors();
+
+      const resizeCanvas = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      };
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      window.addEventListener('mousedown', (e) => {
+        clickScale = 0.8;
+
+        clickEffects.push({
+          x: e.clientX,
+          y: e.clientY,
+          radius: 10,
+          opacity: 1,
+          color: trailGlowColor
+        });
+      });
+
+      window.addEventListener('mouseup', () => {
+        clickScale = 1;
+      });
+
+      const lerp = (start, end, factor) => start + (end - start) * factor;
+
+      const animate = () => {
+        const previousCursorX = cursor.x;
+        const previousCursorY = cursor.y;
+
+        cursor.x = lerp(cursor.x, mouse.x, 0.2);
+        cursor.y = lerp(cursor.y, mouse.y, 0.2);
+
+        ringPos.x = lerp(ringPos.x, mouse.x, 0.15);
+        ringPos.y = lerp(ringPos.y, mouse.y, 0.15);
+
+        auraPos.x = lerp(auraPos.x, mouse.x, 0.1);
+        auraPos.y = lerp(auraPos.y, mouse.y, 0.1);
+
+        const deltaX = cursor.x - previousCursorX;
+        const deltaY = cursor.y - previousCursorY;
+        const velocity = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+
+        const scaleValue = Math.min(velocity * 0.15, 0.5);
+        currentScale = lerp(currentScale, scaleValue, 0.1);
+
+        if (velocity > 0.1) {
+          currentAngle = Math.atan2(deltaY, deltaX);
+          lastAngle = currentAngle;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < clickEffects.length; i++) {
+          const effect = clickEffects[i];
+          effect.radius += 3;
+          effect.opacity -= 0.05;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(effect.x, effect.y, effect.radius, 0, Math.PI * 2);
+          ctx.globalAlpha = Math.max(0, effect.opacity);
+          ctx.lineWidth = 3;
+          ctx.strokeStyle = effect.color;
+          ctx.stroke();
+          ctx.restore();
+
+          if (effect.opacity <= 0) {
+            clickEffects.splice(i, 1);
+            i--;
+          }
+        }
+
+        trailHistory.push({
+          x: cursor.x,
+          y: cursor.y
+        });
+        if (trailHistory.length > MAX_TRAIL_LENGTH) {
+          trailHistory.shift();
+        }
+
+        if (trailHistory.length > 1) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(trailHistory[0].x, trailHistory[0].y);
+
+          for (let i = 1; i < trailHistory.length; i++) {
+            const p = trailHistory[i];
+            ctx.lineTo(p.x, p.y);
+          }
+
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.lineWidth = 4;
+          ctx.strokeStyle = trailGlowColor;
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = trailShadowColor;
+          ctx.stroke();
+
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = trailCoreColor;
+          ctx.shadowBlur = 0;
+          ctx.stroke();
+
+          ctx.restore();
+        }
+
+        const totalScaleX = (1 + currentScale) * clickScale;
+        const totalScaleY = (1 - currentScale * 0.5) * clickScale;
+
+        if (plane && ring && aura) {
+          plane.style.transform = `
+                    translate(${cursor.x}px, ${cursor.y}px) 
+                    translate(-50%, -50%) 
+                    rotate(${lastAngle}rad)
+                    scale(${totalScaleX}, ${totalScaleY})
+                `;
+
+          ring.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`;
+          aura.style.transform = `translate(${auraPos.x}px, ${auraPos.y}px) translate(-50%, -50%)`;
+        }
+
+        requestAnimationFrame(animate);
+      };
+
+      animate();
+    });
+  </script>
 </body>
 
 </html>
